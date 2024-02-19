@@ -1,8 +1,12 @@
-# React + Vite
+# Oliveyoung
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+우바리올 올리브영입니다.
 
-Currently, two official plugins are available:
+테스트 페이지 링크: www.littleolive.store
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+기술스택: Vite, React, JavaScript
+
+### 접속화면(추후 수정될 수 있음)
+![image](https://github.com/UBaRiAll/oliveyoung_front/assets/51705063/64541e85-f582-4350-b185-eef0148ac0d7)
+
+- 구매 버튼을 눌러 구매 api요청을 보낼 수 있습니다.
