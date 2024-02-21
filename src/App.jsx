@@ -7,9 +7,66 @@ function App() {
   const [count2, setCount2] = useState(0);
   const [count3, setCount3] = useState(0);
   const [responseData, SetResponseData] = useState(null);
+  const [language, setLanguage] = useState('ko');
 
   const API_ENDPOINT = 'https://zrrqxyvg1e.execute-api.ap-northeast-2.amazonaws.com/back/api/buy';
   const KINESIS_API_ENDPOINT = 'https://zrrqxyvg1e.execute-api.ap-northeast-2.amazonaws.com/back/run_data_processing';
+
+  // 각 언어에 따른 문자열 변수 정의
+  const strings = {
+    en: {
+      title: "Oliveyoung",
+      buyMaskPack: "Buy Mask Pack",
+      buyHandCream: "Buy Hand Cream",
+      buyLotion: "Buy Lotion",
+      purchaseButton: "Purchase",
+      sendRequest: "Send an API request by clicking the purchase button",
+      purchaseComplete: "Purchase complete",
+      orderNumber: "Order Number",
+      name: "Name",
+      phoneNumber: "Phone Number",
+      address: "Address",
+      price: "Price",
+      quantity: "Quantity",
+      cloudwaveText: "Cloudwave Ubariall"
+    },
+    ko: {
+      title: "올리브영",
+      buyMaskPack: "마스크팩 구매",
+      buyHandCream: "핸드크림 구매",
+      buyLotion: "로션 구매",
+      purchaseButton: "구매하기",
+      sendRequest: "구매버튼을 눌러 API 요청을 보내세요",
+      purchaseComplete: "구매가 완료되었습니다.",
+      orderNumber: "주문번호",
+      name: "이름",
+      phoneNumber: "전화번호",
+      address: "주소",
+      price: "가격",
+      quantity: "수량",
+      cloudwaveText: "클라우드 웨이브 우바리얼"
+    },
+    ar: {
+      title: "أوليف يونغ",
+      buyMaskPack: "شراء ماسك باك",
+      buyHandCream: "شراء كريم اليدين",
+      buyLotion: "شراء اللوشن",
+      purchaseButton: "شراء",
+      sendRequest: "أرسل طلب API بالنقر فوق زر الشراء",
+      purchaseComplete: "اكتمل الشراء",
+      orderNumber: "رقم الطلب",
+      name: "الاسم",
+      phoneNumber: "رقم الهاتف",
+      address: "العنوان",
+      price: "السعر",
+      quantity: "الكمية",
+      cloudwaveText: "سحابة أمواج أوباريال"
+    }
+  };
+
+  const handleLanguageChange = (language) => {
+    setLanguage(language);
+  }
 
   const handlePurchase = (productNum) => {
     let data;
@@ -105,41 +162,46 @@ function App() {
       <div>
         <img src={oliveyoung_logo} className="logo oliveyoung" alt="Oliveyoung logo" />
       </div>
-      <h1>올리브영</h1>
+      <h1>{strings[language].title}</h1>
+      <div className="language-accordion">
+        <button onClick={() => handleLanguageChange('en')}>English</button>
+        <button onClick={() => handleLanguageChange('ko')}>한국어</button>
+        <button onClick={() => handleLanguageChange('ar')}>العربية</button>
+      </div>
       <div className="card">
         <button onClick={() => {
           setCount1(count1 + 1);
           handlePurchase(1);
         }}>
-          마스크팩 구매 {count1}
+          {strings[language].buyMaskPack} {count1}
         </button>
         <button onClick={() => {
           setCount2(count2 + 1);
           handlePurchase(2);
         }}>
-          핸드크림 구매 {count2}
+          {strings[language].buyHandCream} {count2}
         </button>
         <button onClick={() => {
           setCount3(count3 + 1);
           handlePurchase(3);
         }}>
-          로션 구매 {count3}
+          {strings[language].buyLotion} {count3}
         </button>
         
       </div>
       <p>
-          구매버튼을 눌러 api요청을 보내세요
+        {strings[language].sendRequest}
         </p>
       <div className='card'>
         {responseData && (
           <div>
-            <p>구매가 완료되었습니다.</p>
-            <p>주문번호: {responseData.idx}</p>
-            <p>이름: {responseData.name}</p>
-            <p>전화번호: {responseData.phone}</p>
-            <p>주소: {responseData.address}</p>
-            <p>가격: {responseData.price}</p>
-            <p>수량: {responseData.quantity}</p>
+            <p>{strings[language].purchaseComplete}</p>
+            <p>{strings[language].orderNumber}: {responseData.idx}</p>
+            <p>{strings[language].name}: {responseData.name}</p>
+            <p>{strings[language].phoneNumber}: {responseData.phone}</p>
+            <p>{strings[language].address}: {responseData.address}</p>
+            <p>{strings[language].price}: {responseData.price}</p>
+            <p>{strings[language].quantity}: {responseData.quantity}</p>
           </div>
         )}
       </div>
